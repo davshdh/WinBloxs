@@ -1,340 +1,70 @@
-<!DOCTYPE html>
+      <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>BloxFlip - Robux Casino & Slots</title>
-  <link rel="icon" href="https://www.roblox.com/favicon.ico" type="image/x-icon"/>
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&family=Orbitron:wght@700&display=swap" rel="stylesheet"/>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
-  <script src="https://js.stripe.com/v3/"></script>
-  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
-  <style>
-    :root {
-      --primary: #ff00ff;
-      --secondary: #00ffff;
-      --accent: #ffd700;
-      --win: #00ff88;
-      --lose: #ff4444;
-      --bg: linear-gradient(135deg, #0b001a, #1c0038, #2e0055);
-      --card: rgba(20,0,60,0.92);
-      --text: #f0e0ff;
-    }
-    * { margin:0; padding:0; box-sizing:border-box; }
-    body {
-      font-family: 'Roboto', sans-serif;
-      background: var(--bg);
-      color: var(--text);
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      overflow-x: hidden;
-    }
-    header {
-      width: 100%;
-      padding: 15px 30px;
-      background: rgba(0,0,0,0.8);
-      backdrop-filter: blur(15px);
-      border-bottom: 1px solid rgba(var(--primary),0.3);
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      position: fixed;
-      top: 0;
-      z-index: 1000;
-    }
-    .logo {
-      font-family: 'Orbitron', sans-serif;
-      font-size: 38px;
-      background: linear-gradient(90deg, var(--primary), var(--secondary));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      text-shadow: 0 0 20px rgba(var(--primary),0.7);
-    }
-    .balance-box {
-      display: flex;
-      align-items: center;
-      gap: 25px;
-      font-size: 20px;
-      font-weight: 700;
-    }
-    .balance { color: var(--win); text-shadow: 0 0 12px var(--win); }
-    .deposit-btn {
-      padding: 10px 25px;
-      background: linear-gradient(90deg, var(--win), #00bb66);
-      color: #000;
-      font-weight: bold;
-      border: none;
-      border-radius: 10px;
-      cursor: pointer;
-      transition: all 0.3s;
-    }
-    .deposit-btn:hover { transform: scale(1.08); box-shadow: 0 0 25px var(--win); }
-    .main {
-      flex: 1;
-      padding: 100px 20px 60px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 50px;
-    }
-    .welcome {
-      text-align: center;
-      font-size: 52px;
-      font-weight: 900;
-      background: linear-gradient(90deg, var(--primary), var(--secondary), var(--accent));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      text-shadow: 0 0 30px rgba(var(--primary),0.8);
-      margin: 30px 0;
-    }
-    .slots-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
-      gap: 35px;
-      width: 100%;
-      max-width: 1600px;
-    }
-    .slot-card {
-      background: var(--card);
-      backdrop-filter: blur(16px);
-      border-radius: 20px;
-      border: 2px solid rgba(var(--secondary),0.4);
-      padding: 35px;
-      box-shadow: 0 0 60px rgba(var(--secondary),0.3);
-      text-align: center;
-      transition: all 0.4s;
-      position: relative;
-      overflow: hidden;
-    }
-    .slot-card:hover {
-      transform: translateY(-15px);
-      box-shadow: 0 0 90px rgba(var(--secondary),0.6);
-    }
-    .slot-title {
-      font-size: 30px;
-      font-weight: 900;
-      margin-bottom: 20px;
-      background: linear-gradient(90deg, var(--primary), var(--secondary));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
-    .slot-reels {
-      display: flex;
-      justify-content: center;
-      gap: 12px;
-      margin-bottom: 25px;
-    }
-    .slot-reel {
-      width: 90px;
-      height: 270px;
-      background: #0f0f1f;
-      border-radius: 12px;
-      overflow: hidden;
-      box-shadow: inset 0 0 25px rgba(0,0,0,0.9);
-      display: flex;
-      flex-direction: column;
-    }
-    .symbol {
-      width: 90px;
-      height: 90px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 60px;
-      color: #fff;
-      text-shadow: 0 0 20px #fff;
-    }
-    .slot-bet {
-      display: flex;
-      justify-content: center;
-      gap: 15px;
-      margin-bottom: 25px;
-    }
-    .bet-btn {
-      padding: 12px 20px;
-      background: #222;
-      color: #fff;
-      border: 1px solid #444;
-      border-radius: 10px;
-      font-weight: bold;
-      cursor: pointer;
-      transition: all 0.3s;
-    }
-    .bet-btn:hover { background: #333; transform: scale(1.05); }
-    .spin-btn {
-      padding: 16px 60px;
-      background: linear-gradient(90deg, var(--secondary), #00aaff);
-      color: #000;
-      font-size: 22px;
-      font-weight: 900;
-      border: none;
-      border-radius: 14px;
-      cursor: pointer;
-      transition: all 0.4s;
-      box-shadow: 0 8px 30px rgba(var(--secondary),0.5);
-    }
-    .spin-btn:hover { transform: scale(1.08); box-shadow: 0 15px 40px rgba(var(--secondary),0.7); }
-    .slot-result {
-      margin-top: 25px;
-      font-size: 28px;
-      font-weight: 900;
-      min-height: 40px;
-    }
-    .footer {
-      text-align: center;
-      padding: 30px;
-      background: rgba(0,0,0,0.7);
-      border-top: 1px solid rgba(var(--primary),0.3);
-      font-size: 16px;
-      opacity: 0.8;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="css/style.css">
+    <title>Casino</title>
 </head>
 <body>
+    <header>
+        <!-- Header content would go here, but repo only has main body -->
+    </body>
+<h1>Casino</h1>
 
-  <header>
-    <div class="logo">BloxFlip Casino</div>
-    <div class="balance-box">
-      <span class="balance">Robux: <span id="balance">100000</span></span>
-      <button class="deposit-btn" onclick="deposit()">Deposit</button>
-      <button onclick="register()">Register / Login</button>
+<ul>
+    <li>All</li>
+    <li>NEW</li>
+    <li>Drops and wins</li>
+    <li>Video Slots</li>
+    <li>Classic Slots</li>
+    <li>Table Games</li>
+</ul>
+
+<h2>Popular Games</h2>
+
+<div class="game-grid">
+    <div class="game-card">
+        <a href="#"><img src="img/starburst.jpg" alt="Starburst™"></a>
+        <p>Starburst™</p>
+        <a href="#">Play for real</a>
+        <a href="#">Practice</a>
+        <span>0</span>
     </div>
-  </header>
+    <!-- Repeated for 13 more identical Starburst cards, likely placeholder -->
+    <div class="game-card">
+        <a href="#"><img src="img/starburst.jpg" alt="Starburst™"></a>
+        <p>Starburst™</p>
+        <a href="#">Play for real</a>
+        <a href="#">Practice</a>
+        <span>0</span>
+    </div>
+    <!-- ... up to 26 total cards in the leak -->
+</div>
 
-  <div class="main">
-    <div class="welcome">Welcome to BloxFlip Casino</div>
+<h3>Game Providers</h3>
+<ul class="providers">
+    <li>Playtech</li>
+    <li>Netent</li>
+    <li>Play'n Go</li>
+    <li>Playtech</li>
+    <li>Playtech</li>
+    <li>Skywind</li>
+    <li>Wazdan</li>
+    <li>Tom horn</li>
+    <li>Oryx</li>
+    <li>Reelnrg</li>
+    <li>Betsoft</li>
+    <!-- Repeated 3 times for emphasis in source -->
+</ul>
 
-    <div class="slots-grid" id="slotsGrid"></div>
-  </div>
+<!-- More repeated game cards section -->
+<div class="game-grid">
+    <!-- 25 more Starburst placeholders -->
+</div>
 
-  <div class="footer">
-    © 2026 BloxFlip Casino • 18+ Only • Gamble Responsibly
-  </div>
+<a href="#">more</a>
 
-  <audio id="spinSound" src="https://assets.codepen.io/605876/slot-spin.mp3" preload="auto"></audio>
-  <audio id="winSound" src="https://assets.codepen.io/605876/win.mp3" preload="auto"></audio>
-  <audio id="jackpotSound" src="https://assets.codepen.io/605876/jackpot.mp3" preload="auto"></audio>
-
-  <script>
-    const slotsGrid = document.getElementById('slotsGrid');
-    const balanceEl = document.getElementById('balance');
-    let balance = 100000;
-
-    const symbols = ['🍒', '🍋', '🍉', '⭐', '7', '💎', '🔔', 'BAR', 'WILD'];
-
-    // Generate 200+ slots
-    for (let i = 1; i <= 200; i++) {
-      const slot = document.createElement('div');
-      slot.className = 'slot-card';
-      slot.innerHTML = `
-        <div class="slot-title">Slot #${i} - Mega Win</div>
-        <div class="slot-reels">
-          <div class="slot-reel" id="reel1_${i}"></div>
-          <div class="slot-reel" id="reel2_${i}"></div>
-          <div class="slot-reel" id="reel3_${i}"></div>
-          <div class="slot-reel" id="reel4_${i}"></div>
-          <div class="slot-reel" id="reel5_${i}"></div>
-        </div>
-        <div class="slot-bet">
-          <button class="bet-btn" onclick="changeBet(${i}, -100)">-100</button>
-          <span>Bet: <span id="bet_${i}">100</span></span>
-          <button class="bet-btn" onclick="changeBet(${i}, 100)">+100</button>
-        </div>
-        <button class="spin-btn" onclick="spinSlot(${i})">SPIN</button>
-        <div class="slot-result" id="result_${i}"></div>
-      `;
-      slotsGrid.appendChild(slot);
-    }
-
-    function changeBet(slotId, amount) {
-      let bet = parseInt(document.getElementById(`bet_${slotId}`).textContent);
-      bet = Math.max(10, bet + amount);
-      document.getElementById(`bet_${slotId}`).textContent = bet;
-    }
-
-    function spinSlot(slotId) {
-      const bet = parseInt(document.getElementById(`bet_${slotId}`).textContent);
-      if (bet > balance) {
-        document.getElementById(`result_${slotId}`).textContent = 'Not enough Robux!';
-        document.getElementById(`result_${slotId}`).style.color = 'red';
-        return;
-      }
-
-      balance -= bet;
-      balanceEl.textContent = balance;
-
-      document.getElementById(`result_${slotId}`).textContent = 'Spinning...';
-      document.getElementById(`result_${slotId}`).style.color = 'yellow';
-
-      const reels = [
-        document.getElementById(`reel1_${slotId}`),
-        document.getElementById(`reel2_${slotId}`),
-        document.getElementById(`reel3_${slotId}`),
-        document.getElementById(`reel4_${slotId}`),
-        document.getElementById(`reel5_${slotId}`)
-      ];
-
-      reels.forEach(reel => {
-        reel.innerHTML = '';
-        for (let j = 0; j < 40; j++) {
-          const sym = document.createElement('div');
-          sym.className = 'symbol';
-          sym.textContent = symbols[Math.floor(Math.random() * symbols.length)];
-          reel.appendChild(sym);
-        }
-        reel.style.animation = 'spin 3s ease-out forwards';
-      });
-
-      setTimeout(() => {
-        const results = Array(5).fill().map(() => symbols[Math.floor(Math.random() * symbols.length)]);
-        reels.forEach((reel, index) => {
-          reel.children[reel.children.length - 1].textContent = results[index];
-        });
-
-        const won = results.every(r => r === results[0]);
-        const profit = won ? bet * 20 : -bet;
-        balance += won ? bet * 21 : 0;
-        balanceEl.textContent = balance;
-
-        if (won) {
-          document.getElementById(`result_\( {slotId}`).textContent = `JACKPOT! + \){(bet * 20).toLocaleString()} Robux`;
-          document.getElementById(`result_${slotId}`).style.color = 'lime';
-          confetti({
-            particleCount: 200,
-            spread: 90,
-            origin: { y: 0.6 }
-          });
-          const audio = document.getElementById('jackpotSound');
-          audio.currentTime = 0;
-          audio.play().catch(() => {});
-        } else {
-          document.getElementById(`result_${slotId}`).textContent = `Lost ${bet.toLocaleString()} Robux`;
-          document.getElementById(`result_${slotId}`).style.color = 'red';
-        }
-
-        reels.forEach(reel => reel.style.animation = '');
-      }, 3200);
-    }
-
-    function deposit() {
-      const amount = prompt('Enter amount in $ (min 5):');
-      if (!amount || isNaN(amount) || amount < 5) return;
-      alert(`Depositing $${amount} via Stripe... (demo)`);
-      // In real site, call Stripe API here
-    }
-
-    function register() {
-      const username = prompt('Enter username:');
-      const password = prompt('Enter password:');
-      if (username && password) {
-        alert(`Registered as ${username}! Welcome to BloxFlip.`);
-        // In real site, send to backend/Telegram
-      }
-    }
-
-    // Init
-    balanceEl.textContent = balance;
-  </script>
 </body>
 </html>
