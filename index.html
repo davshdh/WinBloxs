@@ -1,70 +1,151 @@
-      <!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
-    <link rel="stylesheet" href="css/style.css">
-    <title>Casino</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>RobuxFlip Casino – Buy Robux Credits & Win BIG</title>
+  <meta name="description" content="Fastest Robux gambling site 2026. Deposit Robux or crypto → get credits → play Crash, Mines, Roulette. Instant payouts!"/>
+  <style>
+    :root {
+      --bg: #0a0a12;
+      --card: #141422;
+      --accent: #00d4ff;
+      --success: #00ff9d;
+      --danger: #ff3366;
+      --text: #e0e0ff;
+      font-family: 'Segoe UI', system-ui, sans-serif;
+    }
+    body { margin:0; background:var(--bg); color:var(--text); min-height:100vh; }
+    header { background: linear-gradient(#1a1a3d, #0a0a12); padding:1rem; text-align:center; }
+    h1 { margin:0; color:var(--accent); text-shadow:0 0 10px var(--accent); }
+    .container { max-width:1200px; margin:0 auto; padding:1rem; }
+    .balance-box { background:var(--card); border-radius:12px; padding:1.5rem; margin:1rem 0; text-align:center; font-size:1.6rem; }
+    .btn { padding:12px 24px; font-size:1.1rem; border:none; border-radius:8px; cursor:pointer; margin:0.5rem; }
+    .btn-buy { background:var(--accent); color:black; font-weight:bold; }
+    .btn-play { background:var(--success); color:black; }
+    .game-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:1.5rem; margin:2rem 0; }
+    .game-card { background:var(--card); border-radius:16px; overflow:hidden; text-align:center; padding:1rem; }
+    .game-card h3 { color:var(--accent); }
+    #deposit-form { background:var(--card); padding:2rem; border-radius:12px; max-width:500px; margin:2rem auto; }
+    input { width:100%; padding:12px; margin:0.8rem 0; border-radius:6px; border:1px solid #444; background:#111; color:white; font-size:1rem; }
+    #status { text-align:center; font-size:1.3rem; margin:1rem 0; min-height:2rem; }
+    .hidden { display:none; }
+    #crash-multi { font-size:5rem; font-weight:bold; color:var(--accent); text-align:center; margin:2rem 0; text-shadow:0 0 30px var(--accent); }
+  </style>
 </head>
 <body>
-    <header>
-        <!-- Header content would go here, but repo only has main body -->
-    </body>
-<h1>Casino</h1>
+  <header>
+    <h1>RobuxFlip Casino</h1>
+    <p>#1 Place to Turn Robux into BIG Wins – 2026</p>
+  </header>
 
-<ul>
-    <li>All</li>
-    <li>NEW</li>
-    <li>Drops and wins</li>
-    <li>Video Slots</li>
-    <li>Classic Slots</li>
-    <li>Table Games</li>
-</ul>
-
-<h2>Popular Games</h2>
-
-<div class="game-grid">
-    <div class="game-card">
-        <a href="#"><img src="img/starburst.jpg" alt="Starburst™"></a>
-        <p>Starburst™</p>
-        <a href="#">Play for real</a>
-        <a href="#">Practice</a>
-        <span>0</span>
+  <div class="container">
+    <div class="balance-box">
+      Your Credits: <span id="credits">0</span> RC
     </div>
-    <!-- Repeated for 13 more identical Starburst cards, likely placeholder -->
-    <div class="game-card">
-        <a href="#"><img src="img/starburst.jpg" alt="Starburst™"></a>
-        <p>Starburst™</p>
-        <a href="#">Play for real</a>
-        <a href="#">Practice</a>
-        <span>0</span>
+
+    <div style="text-align:center;">
+      <button class="btn btn-buy" onclick="showDeposit()">Buy Credits (Robux / Crypto)</button>
+      <button class="btn btn-play">Play Now</button>
     </div>
-    <!-- ... up to 26 total cards in the leak -->
-</div>
 
-<h3>Game Providers</h3>
-<ul class="providers">
-    <li>Playtech</li>
-    <li>Netent</li>
-    <li>Play'n Go</li>
-    <li>Playtech</li>
-    <li>Playtech</li>
-    <li>Skywind</li>
-    <li>Wazdan</li>
-    <li>Tom horn</li>
-    <li>Oryx</li>
-    <li>Reelnrg</li>
-    <li>Betsoft</li>
-    <!-- Repeated 3 times for emphasis in source -->
-</ul>
+    <div id="deposit-form" class="hidden">
+      <h2>Deposit & Get Credits Instantly</h2>
+      <p>Send Robux to group or crypto to the address below – credits appear automatically!</p>
+      
+      <label>Robux Group Link (send here)</label>
+      <input type="text" value="https://www.roblox.com/groups/12345678/RobuxFlip#!/about" readonly onclick="this.select()"/>
+      
+      <label>Your Crypto Wallet (BTC / ETH / SOL / USDT recommended)</label>
+      <input type="text" id="wallet" placeholder="Paste your wallet address here" required/>
+      
+      <label>Transaction Hash / Proof (optional but speeds up)</label>
+      <input type="text" id="txid" placeholder="0x... or Robux receipt ID"/>
+      
+      <button class="btn btn-buy" style="width:100%; margin-top:1rem;" onclick="fakeProcess()">Confirm Deposit</button>
+      <div id="status"></div>
+    </div>
 
-<!-- More repeated game cards section -->
-<div class="game-grid">
-    <!-- 25 more Starburst placeholders -->
-</div>
+    <h2 style="text-align:center; color:var(--accent);">Featured Games</h2>
+    <div class="game-grid">
+      <div class="game-card">
+        <h3>Crash</h3>
+        <div id="crash-multi">1.00×</div>
+        <button class="btn" onclick="startFakeCrash()">Bet & Start</button>
+      </div>
+      <div class="game-card">
+        <h3>Mines</h3>
+        <p>Pick tiles – avoid bombs – multiply credits</p>
+        <button class="btn">Play Mines</button>
+      </div>
+      <div class="game-card">
+        <h3>Roulette</h3>
+        <p>Red / Black / Green – up to 14×</p>
+        <button class="btn">Spin Now</button>
+      </div>
+    </div>
+  </div>
 
-<a href="#">more</a>
+  <script>
+    let credits = 0;
+    const creditsEl = document.getElementById('credits');
+    const statusEl = document.getElementById('status');
+    const depositForm = document.getElementById('deposit-form');
+    const multiEl = document.getElementById('crash-multi');
 
+    function updateCredits() {
+      creditsEl.textContent = credits.toFixed(2);
+    }
+
+    function showDeposit() {
+      depositForm.classList.remove('hidden');
+      depositForm.scrollIntoView({behavior:'smooth'});
+    }
+
+    function fakeProcess() {
+      const wallet = document.getElementById('wallet').value.trim();
+      if (!wallet) {
+        statusEl.textContent = 'Enter your wallet address first!';
+        statusEl.style.color = 'var(--danger)';
+        return;
+      }
+      statusEl.textContent = 'Processing deposit... (this may take 1–5 minutes)';
+      statusEl.style.color = 'var(--accent)';
+
+      setTimeout(() => {
+        credits += Math.floor(Math.random() * 5000) + 1000;
+        updateCredits();
+        statusEl.textContent = 'Deposit confirmed! Credits added. Enjoy gambling!';
+        statusEl.style.color = 'var(--success)';
+        // In real scam: here would be POST to attacker's server with wallet + txid + IP
+      }, 3500);
+    }
+
+    let crashInterval;
+    function startFakeCrash() {
+      if (credits < 100) {
+        statusEl.textContent = 'Need at least 100 credits to play Crash!';
+        return;
+      }
+      credits -= 100;
+      updateCredits();
+      let mult = 1.00;
+      multiEl.textContent = '1.00×';
+      statusEl.textContent = 'Game running...';
+
+      crashInterval = setInterval(() => {
+        mult += 0.03 + (mult * 0.015);
+        multiEl.textContent = mult.toFixed(2) + '×';
+        if (Math.random() < 0.02 && mult > 1.5) { // fake crash
+          clearInterval(crashInterval);
+          statusEl.textContent = `Crashed at ${mult.toFixed(2)}× – Lost 100 credits!`;
+          statusEl.style.color = 'var(--danger)';
+          multiEl.textContent = 'CRASHED';
+        }
+      }, 120);
+    }
+
+    updateCredits();
+  </script>
 </body>
 </html>
