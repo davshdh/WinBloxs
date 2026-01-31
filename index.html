@@ -3,370 +3,373 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
-  <title>RobuxNova Elite • Ultimate Robux 2026 • Instant • Verified • Safe</title>
+  <title>RobuxNova Elite • God-Tier Robux 2026 • Instant • Verified • Safe</title>
+  <meta name="description" content="Ultimate Robux delivery 2026 – up to 90% off! 1M+ users, delivery in <15s, no bans, group/crypto accepted. Elite verified shop."/>
   <style>
     :root {
-      --bg: #000004;
-      --glass: rgba(2,2,10,0.8);
-      --accent: #00fffe;
-      --green: #00ffea;
-      --red: #ff0f3d;
+      --bg: #000002;
+      --glass: rgba(1,1,8,0.85);
+      --accent: #00ffff;
+      --green: #00fffc;
+      --red: #ff0a2e;
       --text: #ffffff;
-      --glow: 0 0 90px rgba(0,255,254,1);
+      --glow: 0 0 100px rgba(0,255,255,1);
     }
     body {
       margin:0; padding:0;
-      background:#000004;
+      background:#000002;
       color:var(--text);
       font-family:system-ui,sans-serif;
       min-height:100vh;
       overflow-x:hidden;
     }
-    #holo {position:fixed;inset:0;z-index:-2;pointer-events:none;}
+    #cosmic-bg {position:fixed;inset:0;z-index:-3;pointer-events:none;}
+    #wave-layer {position:fixed;inset:0;z-index:-1;pointer-events:none;opacity:0.4;}
     header {
-      background:rgba(0,0,0,0.98);
-      backdrop-filter:blur(40px);
-      padding:1rem;
+      background:rgba(0,0,0,0.99);
+      backdrop-filter:blur(45px);
+      padding:0.9rem;
       text-align:center;
       position:fixed;
       width:100%;
-      z-index:5000;
-      border-bottom:1px solid rgba(0,255,254,0.4);
+      z-index:6000;
+      border-bottom:1px solid rgba(0,255,255,0.45);
     }
     h1 {
-      font-size:clamp(5rem,18vw,9.5rem);
-      background:linear-gradient(90deg,#00fffe,#ff0f3d,#00fffe);
+      font-size:clamp(5.5rem,20vw,10.5rem);
+      background:linear-gradient(90deg,#00ffff,#ff0a2e,#00ffff);
       -webkit-background-clip:text;
       background-clip:text;
       color:transparent;
       font-weight:900;
       text-shadow:var(--glow);
       margin:0.1rem 0;
-      letter-spacing:-7px;
+      letter-spacing:-8px;
     }
-    .god-badges {
-      display:flex;flex-wrap:wrap;gap:1.8rem;justify-content:center;margin:1.8rem 0;
+    .cosmic-badges {
+      display:flex;flex-wrap:wrap;gap:2rem;justify-content:center;margin:2rem 0;
     }
-    .god-badge {
-      background:rgba(0,255,234,0.28);
+    .cosmic-badge {
+      background:rgba(0,255,252,0.3);
       border:1px solid var(--green);
-      border-radius:100px;
-      padding:1rem 2.2rem;
+      border-radius:110px;
+      padding:1.1rem 2.5rem;
       font-weight:bold;
-      font-size:1.2rem;
+      font-size:1.3rem;
     }
-    .god-alert {
-      background:rgba(255,15,61,0.45);
+    .cosmic-alert {
+      background:rgba(255,10,46,0.5);
       color:white;
-      padding:2rem;
+      padding:2.2rem;
       text-align:center;
-      font-size:3rem;
+      font-size:3.5rem;
       font-weight:900;
-      margin-top:120px;
-      animation:pulse 1.2s infinite;
+      margin-top:130px;
+      animation:pulse 1s infinite;
     }
-    @keyframes pulse{0%,100%{opacity:1}50%{opacity:0.2}}
-    .god-ticker {
-      background:rgba(0,0,0,0.9);
-      padding:1.7rem;
-      font-size:1.9rem;
+    @keyframes pulse{0%,100%{opacity:1}50%{opacity:0.15}}
+    .cosmic-ticker {
+      background:rgba(0,0,0,0.92);
+      padding:1.9rem;
+      font-size:2.1rem;
       overflow:hidden;
       white-space:nowrap;
     }
-    .ticker-flow {
+    .ticker-scroll {
       display:inline-block;
-      padding-right:8rem;
-      animation:marquee 80s linear infinite;
+      padding-right:9rem;
+      animation:cosmic-scroll 90s linear infinite;
     }
-    @keyframes marquee{0%{transform:translateX(100%)}100%{transform:translateX(-100%)}}
-    .god-content {max-width:1800px;margin:0 auto;padding:4rem 1rem;padding-top:340px;}
-    .god-grid {
+    @keyframes cosmic-scroll{0%{transform:translateX(100%)}100%{transform:translateX(-100%)}}
+    .cosmic-content {max-width:1900px;margin:0 auto;padding:5rem 1rem;padding-top:380px;}
+    .cosmic-grid {
       display:grid;
-      grid-template-columns:repeat(auto-fit,minmax(500px,1fr));
-      gap:4.5rem;
-      margin:8rem 0;
+      grid-template-columns:repeat(auto-fit,minmax(540px,1fr));
+      gap:5rem;
+      margin:9rem 0;
     }
-    .god-card {
+    .cosmic-card {
       background:var(--glass);
-      backdrop-filter:blur(40px);
-      border:1px solid rgba(0,255,254,0.5);
-      border-radius:64px;
-      padding:5.5rem 4rem;
+      backdrop-filter:blur(45px);
+      border:1px solid rgba(0,255,255,0.55);
+      border-radius:72px;
+      padding:6.5rem 4.5rem;
       text-align:center;
-      transition:all 0.9s cubic-bezier(0.16,1,0.3,1.5);
+      transition:all 1s cubic-bezier(0.15,1,0.3,1.6);
     }
-    .god-card:hover {
-      transform:translateY(-45px) scale(1.09);
+    .cosmic-card:hover {
+      transform:translateY(-50px) scale(1.1);
       box-shadow:var(--glow);
       border-color:var(--accent);
     }
-    .god-robux {
-      font-size:9.5rem;
+    .cosmic-robux {
+      font-size:11rem;
       font-weight:900;
       color:var(--accent);
-      margin:2.5rem 0;
-      letter-spacing:-10px;
+      margin:3rem 0;
+      letter-spacing:-12px;
     }
-    .god-price {
-      font-size:5rem;
+    .cosmic-price {
+      font-size:5.5rem;
       color:var(--green);
       font-weight:bold;
     }
-    .god-strike {
-      color:#222;
+    .cosmic-strike {
+      color:#111;
       text-decoration:line-through;
-      font-size:3rem;
-      margin-left:2.2rem;
+      font-size:3.5rem;
+      margin-left:2.5rem;
     }
-    .god-sold {
+    .cosmic-sold {
       color:var(--accent);
-      font-size:2.5rem;
-      margin:3rem 0;
+      font-size:2.8rem;
+      margin:3.5rem 0;
       font-weight:bold;
     }
-    .god-btn {
-      background:linear-gradient(45deg,#00fffe,#0080ff);
+    .cosmic-btn {
+      background:linear-gradient(45deg,#00ffff,#0066ff);
       color:black;
       border:none;
-      padding:2.5rem 8rem;
-      font-size:2.5rem;
+      padding:2.8rem 9rem;
+      font-size:2.8rem;
       font-weight:900;
-      border-radius:110px;
+      border-radius:120px;
       cursor:pointer;
-      margin-top:4.5rem;
+      margin-top:5rem;
       width:100%;
       box-shadow:var(--glow);
     }
-    .god-btn:hover {transform:scale(1.22);box-shadow:0 0 160px rgba(0,255,254,1);}
-    .god-reviews {
+    .cosmic-btn:hover {transform:scale(1.25);box-shadow:0 0 180px rgba(0,255,255,1);}
+    .cosmic-reviews {
       background:var(--glass);
-      backdrop-filter:blur(38px);
-      border-radius:44px;
-      padding:5rem;
-      margin:9rem 0;
-      border:1px solid rgba(0,255,234,0.5);
+      backdrop-filter:blur(42px);
+      border-radius:48px;
+      padding:5.5rem;
+      margin:10rem 0;
+      border:1px solid rgba(0,255,252,0.55);
     }
-    .god-testimonial {
-      background:rgba(0,255,234,0.16);
-      border-radius:32px;
-      padding:3.5rem;
-      margin:4rem 0;
+    .cosmic-testimonial {
+      background:rgba(0,255,252,0.18);
+      border-radius:36px;
+      padding:4rem;
+      margin:4.5rem 0;
       font-style:italic;
-      font-size:1.65rem;
+      font-size:1.75rem;
     }
-    #god-modal {
+    #cosmic-modal {
       display:none;
       position:fixed;
       inset:0;
-      background:rgba(0,0,0,0.99);
-      backdrop-filter:blur(20px);
-      z-index:40000;
+      background:rgba(0,0,0,0.995);
+      backdrop-filter:blur(22px);
+      z-index:50000;
       align-items:center;
       justify-content:center;
     }
-    .modal-god {
+    .modal-cosmic {
       background:var(--glass);
-      backdrop-filter:blur(70px);
-      border-radius:70px;
-      padding:7.5rem 7rem;
-      max-width:880px;
+      backdrop-filter:blur(80px);
+      border-radius:80px;
+      padding:8.5rem 8rem;
+      max-width:960px;
       width:96%;
       border:2px solid var(--accent);
       box-shadow:var(--glow);
     }
-    .god-x {
+    .cosmic-x {
       position:absolute;
-      top:3rem;
-      right:4rem;
-      font-size:6.5rem;
+      top:3.5rem;
+      right:4.5rem;
+      font-size:7.5rem;
       cursor:pointer;
     }
     input,select {
       width:100%;
-      padding:34px;
-      margin:2.5rem 0;
-      border-radius:24px;
-      border:1px solid rgba(0,255,254,0.65);
-      background:rgba(0,0,30,0.9);
+      padding:38px;
+      margin:2.8rem 0;
+      border-radius:26px;
+      border:1px solid rgba(0,255,255,0.7);
+      background:rgba(0,0,35,0.95);
       color:white;
-      font-size:2.1rem;
+      font-size:2.3rem;
     }
-    #god-progress {
-      height:20px;
-      background:#00020c;
-      border-radius:10px;
-      margin:5rem 0;
+    #cosmic-progress {
+      height:22px;
+      background:#00010a;
+      border-radius:11px;
+      margin:5.5rem 0;
       overflow:hidden;
       display:none;
     }
-    #god-bar {
+    #cosmic-bar {
       height:100%;
       width:0%;
-      background:linear-gradient(90deg,#00ffea,#00fffe);
-      transition:width 9s ease;
+      background:linear-gradient(90deg,#00ffea,#00ffff);
+      transition:width 10s ease;
     }
-    #god-message {
+    #cosmic-message {
       text-align:center;
-      font-size:3.2rem;
-      margin:5rem 0;
-      min-height:9rem;
+      font-size:3.5rem;
+      margin:5.5rem 0;
+      min-height:10rem;
       line-height:1.4;
     }
   </style>
 </head>
 <body>
-  <canvas id="holo"></canvas>
+  <canvas id="cosmic-bg"></canvas>
+  <canvas id="wave-layer"></canvas>
 
   <header>
     <h1>RobuxNova Elite</h1>
-    <div style="font-size:2.8rem;color:#00ffea;margin:1.8rem 0;">God-Tier Robux Provider • 2026</div>
-    <div class="god-badges">
-      <div class="god-badge">🔒 God-Level Encryption</div>
-      <div class="god-badge">⭐ 5.0 / 5 (1M+)</div>
-      <div class="god-badge">⚡ Delivery in <20s</div>
-      <div class="god-badge">🛡️ Eternal Ban Immunity</div>
+    <div style="font-size:3rem;color:#00ffea;margin:2rem 0;">Cosmic Robux Provider • 2026</div>
+    <div class="cosmic-badges">
+      <div class="cosmic-badge">🔒 Cosmic Encryption</div>
+      <div class="cosmic-badge">⭐ 5.0 / 5 (2M+)</div>
+      <div class="cosmic-badge">⚡ Delivery in <10s</div>
+      <div class="cosmic-badge">🛡️ Infinite Ban Shield</div>
     </div>
   </header>
 
-  <div class="god-alert">90% END-OF-SUMMER APOCALYPSE – LAST CHANCE!</div>
+  <div class="cosmic-alert">95% COSMIC APOCALYPSE SALE – ENDING SOON!</div>
 
-  <div class="god-ticker">
-    <div class="ticker-flow">
-      Just now: GodCZ bought 5M Robux • 15s ago • divine! • xEliteNova bought 2M • instant god-tier! • PragueOverlord got 10M • ultimate! • ... 
+  <div class="cosmic-ticker">
+    <div class="ticker-scroll">
+      Breaking: CosmicCZ bought 10M Robux • 10s ago • cosmic! • xNovaGod bought 5M • instant cosmic! • PragueCosmos got 20M • god-level! • ... 
     </div>
   </div>
 
-  <div class="god-content">
-    <div class="god-grid">
-      <div class="god-card">
-        <h2>God Starter</h2>
-        <div class="god-robux">200,000 Robux</div>
-        <div><span class="god-price">$99.99</span> <span class="god-strike">$399.99</span></div>
-        <div class="god-sold">Claimed today: <span id="god-1">2,341</span></div>
-        <button class="god-btn" onclick="godOpen(200000,99.99)">God-Tier Claim</button>
+  <div class="cosmic-content">
+    <div class="cosmic-grid">
+      <div class="cosmic-card">
+        <h2>Cosmic Starter</h2>
+        <div class="cosmic-robux">500,000 Robux</div>
+        <div><span class="cosmic-price">$199.99</span> <span class="cosmic-strike">$799.99</span></div>
+        <div class="cosmic-sold">Claimed today: <span id="cosmic-1">4,128</span></div>
+        <button class="cosmic-btn" onclick="cosmicOpen(500000,199.99)">Cosmic Claim</button>
       </div>
-      <div class="god-card">
-        <h2>God Supreme</h2>
-        <div class="god-robux">1,000,000 Robux</div>
-        <div><span class="god-price">$399.99</span> <span class="god-strike">$1,499.99</span></div>
-        <div class="god-sold">Claimed today: <span id="god-2">7,892</span></div>
-        <button class="god-btn" onclick="godOpen(1000000,399.99)">God-Tier Claim</button>
+      <div class="cosmic-card">
+        <h2>Cosmic Supreme</h2>
+        <div class="cosmic-robux">2,500,000 Robux</div>
+        <div><span class="cosmic-price">$699.99</span> <span class="cosmic-strike">$2,999.99</span></div>
+        <div class="cosmic-sold">Claimed today: <span id="cosmic-2">12,456</span></div>
+        <button class="cosmic-btn" onclick="cosmicOpen(2500000,699.99)">Cosmic Claim</button>
       </div>
-      <div class="god-card">
-        <h2>God Eternal</h2>
-        <div class="god-robux">10,000,000 Robux</div>
-        <div><span class="god-price">$1,499.99</span> <span class="god-strike">$4,999.99</span></div>
-        <div class="god-sold">Claimed today: <span id="god-3">3,912</span></div>
-        <button class="god-btn" onclick="godOpen(10000000,1499.99)">God-Tier Claim</button>
+      <div class="cosmic-card">
+        <h2>Cosmic Eternal</h2>
+        <div class="cosmic-robux">25,000,000 Robux</div>
+        <div><span class="cosmic-price">$2,499.99</span> <span class="cosmic-strike">$9,999.99</span></div>
+        <div class="cosmic-sold">Claimed today: <span id="cosmic-3">6,789</span></div>
+        <button class="cosmic-btn" onclick="cosmicOpen(25000000,2499.99)">Cosmic Claim</button>
       </div>
     </div>
 
-    <div class="god-reviews">
-      <h2 style="text-align:center;color:#00ffea;font-size:4.8rem;margin-bottom:4.5rem;">God-Tier Testimonials</h2>
-      <div class="god-testimonial">"10M delivered in 18 seconds – god mode activated" – EternalCZ</div>
-      <div class="god-testimonial">"30+ purchases in 2026 – flawless god-tier service" – RobuxGodPrague</div>
-      <div class="god-testimonial">"Unmatched prices + divine delivery speed – elite" – NeonGod</div>
+    <div class="cosmic-reviews">
+      <h2 style="text-align:center;color:#00ffea;font-size:5.5rem;margin-bottom:5rem;">Cosmic Testimonials</h2>
+      <div class="cosmic-testimonial">"25M in 12 seconds – cosmic power unlocked!" – CosmicCZGod</div>
+      <div class="cosmic-testimonial">"50+ buys in 2026 – flawless cosmic service" – RobuxCosmos</div>
+      <div class="cosmic-testimonial">"Unrivaled prices + cosmic delivery – supreme" – NeonCosmic</div>
     </div>
   </div>
 
-  <div id="god-modal">
-    <div class="modal-god">
-      <span class="god-x" onclick="godClose()">×</span>
-      <h2 style="text-align:center;color:var(--accent);margin-bottom:4.5rem;font-size:5rem;">God-Tier Instant Delivery</h2>
-      <p id="god-deal" style="text-align:center;font-size:3.8rem;margin-bottom:4.5rem;"></p>
+  <div id="cosmic-modal">
+    <div class="modal-cosmic">
+      <span class="cosmic-x" onclick="cosmicClose()">×</span>
+      <h2 style="text-align:center;color:var(--accent);margin-bottom:5rem;font-size:5.5rem;">Cosmic Instant Delivery</h2>
+      <p id="cosmic-deal" style="text-align:center;font-size:4.2rem;margin-bottom:5rem;"></p>
 
-      <label>Roblox Username (exact god match)</label>
-      <input type="text" id="god-user" placeholder="Your exact username" required/>
+      <label>Cosmic Roblox Username</label>
+      <input type="text" id="cosmic-user" placeholder="Your exact username" required/>
 
-      <label>God Payment Method</label>
-      <select id="god-method">
-        <option>Robux Group Transfer (God Speed – Zero Fees)</option>
-        <option>Bitcoin (BTC / Lightning God)</option>
-        <option>USDT / ETH / SOL (Crypto God)</option>
+      <label>Cosmic Payment Method</label>
+      <select id="cosmic-method">
+        <option>Robux Group Transfer (Cosmic Speed – Zero Fees)</option>
+        <option>Bitcoin (BTC / Lightning Cosmic)</option>
+        <option>USDT / ETH / SOL (Crypto Cosmic)</option>
       </select>
 
-      <label>God Proof (txid / screenshot / receipt link)</label>
-      <input type="text" id="god-proof" placeholder="Paste for god-priority delivery"/>
+      <label>Cosmic Proof (txid / screenshot / receipt link)</label>
+      <input type="text" id="cosmic-proof" placeholder="Paste for cosmic-priority delivery"/>
 
-      <div id="god-progress"><div id="god-bar"></div></div>
-      <button class="god-btn" onclick="godExecute()">Complete God Transaction</button>
-      <div id="god-message"></div>
+      <div id="cosmic-progress"><div id="cosmic-bar"></div></div>
+      <button class="cosmic-btn" onclick="cosmicExecute()">Complete Cosmic Transaction</button>
+      <div id="cosmic-message"></div>
     </div>
   </div>
 
   <script>
-    const godC = document.getElementById('holo');
-    const godCtx = godC.getContext('2d');
-    godC.width = window.innerWidth;
-    godC.height = window.innerHeight;
-    window.addEventListener('resize',()=>{godC.width=window.innerWidth;godC.height=window.innerHeight});
-    let godP = [];
-    for(let i=0;i<400;i++) godP.push({x:Math.random()*godC.width,y:Math.random()*godC.height,r:Math.random()*4+1,vx:Math.random()*1.2-0.6,vy:Math.random()*1.2-0.6});
-    function godDraw(){godCtx.clearRect(0,0,godC.width,godC.height);
-      godP.forEach(p=>{p.x+=p.vx;p.y+=p.vy;
-        if(p.x<0||p.x>godC.width)p.vx*=-1;
-        if(p.y<0||p.y>godC.height)p.vy*=-1;
-        godCtx.beginPath();godCtx.arc(p.x,p.y,p.r,0,Math.PI*2);
-        godCtx.fillStyle='rgba(0,255,254,0.5)';godCtx.fill();});
-      requestAnimationFrame(godDraw);}
-    godDraw();
+    const cosmicC = document.getElementById('cosmic-bg');
+    const cosmicCtx = cosmicC.getContext('2d');
+    cosmicC.width = window.innerWidth;
+    cosmicC.height = window.innerHeight;
+    window.addEventListener('resize',()=>{cosmicC.width=window.innerWidth;cosmicC.height=window.innerHeight});
+    let cosmicP = [];
+    for(let i=0;i<500;i++) cosmicP.push({x:Math.random()*cosmicC.width,y:Math.random()*cosmicC.height,r:Math.random()*4.5+1,vx:Math.random()*1.4-0.7,vy:Math.random()*1.4-0.7});
+    function cosmicDraw(){cosmicCtx.clearRect(0,0,cosmicC.width,cosmicC.height);
+      cosmicP.forEach(p=>{p.x+=p.vx;p.y+=p.vy;
+        if(p.x<0||p.x>cosmicC.width)p.vx*=-1;
+        if(p.y<0||p.y>cosmicC.height)p.vy*=-1;
+        cosmicCtx.beginPath();cosmicCtx.arc(p.x,p.y,p.r,0,Math.PI*2);
+        cosmicCtx.fillStyle='rgba(0,255,255,0.55)';cosmicCtx.fill();});
+      requestAnimationFrame(cosmicDraw);}
+    cosmicDraw();
 
     setInterval(()=>{
-      document.getElementById('god-1').textContent = Math.floor(Math.random()*1500)+2000;
-      document.getElementById('god-2').textContent = Math.floor(Math.random()*4000)+7000;
-      document.getElementById('god-3').textContent = Math.floor(Math.random()*1500)+3500;
-    },2500);
+      document.getElementById('cosmic-1').textContent = Math.floor(Math.random()*2000)+3000;
+      document.getElementById('cosmic-2').textContent = Math.floor(Math.random()*6000)+10000;
+      document.getElementById('cosmic-3').textContent = Math.floor(Math.random()*2000)+5000;
+    },2000);
 
-    function godOpen(r,p){
-      document.getElementById('god-deal').textContent = `${r.toLocaleString()} Robux – Only $${p}`;
-      document.getElementById('god-modal').style.display = 'flex';
+    function cosmicOpen(r,p){
+      document.getElementById('cosmic-deal').textContent = `${r.toLocaleString()} Robux – Only $${p}`;
+      document.getElementById('cosmic-modal').style.display = 'flex';
     }
 
-    function godClose(){
-      document.getElementById('god-modal').style.display = 'none';
-      document.getElementById('god-message').innerHTML = '';
-      document.getElementById('god-bar').style.width = '0%';
-      document.getElementById('god-progress').style.display = 'none';
+    function cosmicClose(){
+      document.getElementById('cosmic-modal').style.display = 'none';
+      document.getElementById('cosmic-message').innerHTML = '';
+      document.getElementById('cosmic-bar').style.width = '0%';
+      document.getElementById('cosmic-progress').style.display = 'none';
     }
 
-    function godExecute(){
-      const u = document.getElementById('god-user').value.trim();
-      const m = document.getElementById('god-message');
-      const bar = document.getElementById('god-bar');
-      const prog = document.getElementById('god-progress');
+    function cosmicExecute(){
+      const u = document.getElementById('cosmic-user').value.trim();
+      const m = document.getElementById('cosmic-message');
+      const bar = document.getElementById('cosmic-bar');
+      const prog = document.getElementById('cosmic-progress');
 
       if(!u){
-        m.textContent = 'God-tier username required!';
+        m.textContent = 'Cosmic username required for delivery!';
         m.style.color = 'var(--red)';
         return;
       }
 
-      m.textContent = 'Opening god-tier secure channel to Roblox...';
+      m.textContent = 'Opening cosmic secure portal to Roblox...';
       m.style.color = 'var(--accent)';
       prog.style.display = 'block';
       bar.style.width = '0%';
 
-      setTimeout(()=>{bar.style.width='10%'; m.textContent='God-tier payment authentication...';},3200);
-      setTimeout(()=>{bar.style.width='40%'; m.textContent='God-tier group transfer preparation...';},7200);
-      setTimeout(()=>{bar.style.width='100%'; m.innerHTML = '<span style="color:#00ffea;font-size:4.8rem;font-weight:bold;">GOD-TIER DELIVERY COMPLETE!</span><br><br>Your Robux has achieved god status in your account!<br>Refresh Roblox and rule.<br>Thank you for god-tier choice with RobuxNova Elite!'; godFireworks(); },13200);
+      setTimeout(()=>{bar.style.width='8%'; m.textContent='Cosmic payment verification...';},3500);
+      setTimeout(()=>{bar.style.width='35%'; m.textContent='Cosmic group transfer activation...';},8000);
+      setTimeout(()=>{bar.style.width='100%'; m.innerHTML = '<span style="color:#00ffea;font-size:5.2rem;font-weight:bold;">COSMIC DELIVERY COMPLETE!</span><br><br>Your Robux has reached cosmic status in your account!<br>Refresh Roblox and dominate.<br>Thank you for cosmic choice with RobuxNova Elite!'; cosmicFireworks(); },15000);
     }
 
-    function godFireworks(){
-      for(let i=0;i<1000;i++){
+    function cosmicFireworks(){
+      for(let i=0;i<1200;i++){
         let f = document.createElement('div');
-        f.style.cssText = `position:fixed;width:22px;height:22px;background:\( {['#00fffe','#00ffea','#ff0f3d','#ffffaa'][Math.floor(Math.random()*4)]};left: \){Math.random()*100}vw;top:-70px;border-radius:50%;pointer-events:none;opacity:${Math.random()*0.8+0.2};`;
+        f.style.cssText = `position:fixed;width:24px;height:24px;background:\( {['#00ffff','#00ffea','#ff0a2e','#ffffcc'][Math.floor(Math.random()*4)]};left: \){Math.random()*100}vw;top:-80px;border-radius:50%;pointer-events:none;opacity:${Math.random()*0.8+0.2};`;
         document.body.appendChild(f);
-        let y=-70, vy=Math.random()*22+18, rot=0;
-        let anim = setInterval(()=>{
-          y+=vy; vy+=0.8; rot+=22;
+        let y=-80, vy=Math.random()*24+20, rot=0;
+        let loop = setInterval(()=>{
+          y+=vy; vy+=0.9; rot+=25;
           f.style.top=y+'px';
           f.style.transform=`rotate(${rot}deg)`;
-          if(y>window.innerHeight+140){f.remove();clearInterval(anim);}
+          if(y>window.innerHeight+160){f.remove();clearInterval(loop);}
         },16);
       }
     }
 
-    document.getElementById('god-modal').onclick = e => { if(e.target === document.getElementById('god-modal')) godClose(); };
+    document.getElementById('cosmic-modal').onclick = e => { if(e.target === document.getElementById('cosmic-modal')) cosmicClose(); };
   </script>
 </body>
 </html>
