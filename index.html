@@ -1,151 +1,342 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dark">
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>RobuxFlip Casino – Buy Robux Credits & Win BIG</title>
-  <meta name="description" content="Fastest Robux gambling site 2026. Deposit Robux or crypto → get credits → play Crash, Mines, Roulette. Instant payouts!"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+  <title>RobuxNova • Premium Robux 2026 – Instant • Trusted • Safe</title>
   <style>
     :root {
-      --bg: #0a0a12;
-      --card: #141422;
-      --accent: #00d4ff;
-      --success: #00ff9d;
-      --danger: #ff3366;
-      --text: #e0e0ff;
-      font-family: 'Segoe UI', system-ui, sans-serif;
+      --bg: #05050f;
+      --glass: rgba(10,10,30,0.55);
+      --accent: #00ffff;
+      --green: #00ffcc;
+      --red: #ff2a5e;
+      --text: #f8f8ff;
+      --glow: 0 0 45px rgba(0,255,255,0.8);
     }
-    body { margin:0; background:var(--bg); color:var(--text); min-height:100vh; }
-    header { background: linear-gradient(#1a1a3d, #0a0a12); padding:1rem; text-align:center; }
-    h1 { margin:0; color:var(--accent); text-shadow:0 0 10px var(--accent); }
-    .container { max-width:1200px; margin:0 auto; padding:1rem; }
-    .balance-box { background:var(--card); border-radius:12px; padding:1.5rem; margin:1rem 0; text-align:center; font-size:1.6rem; }
-    .btn { padding:12px 24px; font-size:1.1rem; border:none; border-radius:8px; cursor:pointer; margin:0.5rem; }
-    .btn-buy { background:var(--accent); color:black; font-weight:bold; }
-    .btn-play { background:var(--success); color:black; }
-    .game-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:1.5rem; margin:2rem 0; }
-    .game-card { background:var(--card); border-radius:16px; overflow:hidden; text-align:center; padding:1rem; }
-    .game-card h3 { color:var(--accent); }
-    #deposit-form { background:var(--card); padding:2rem; border-radius:12px; max-width:500px; margin:2rem auto; }
-    input { width:100%; padding:12px; margin:0.8rem 0; border-radius:6px; border:1px solid #444; background:#111; color:white; font-size:1rem; }
-    #status { text-align:center; font-size:1.3rem; margin:1rem 0; min-height:2rem; }
-    .hidden { display:none; }
-    #crash-multi { font-size:5rem; font-weight:bold; color:var(--accent); text-align:center; margin:2rem 0; text-shadow:0 0 30px var(--accent); }
+    body {
+      margin:0; padding:0;
+      background: #05050f;
+      color: var(--text);
+      font-family: system-ui, -apple-system, sans-serif;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+    #bg-canvas, #wave-canvas { position:fixed; inset:0; z-index:-2; pointer-events:none; }
+    header {
+      background: rgba(0,0,0,0.75);
+      backdrop-filter: blur(20px);
+      padding: 1.4rem 1rem;
+      text-align: center;
+      position: fixed;
+      width: 100%;
+      z-index: 1000;
+      border-bottom: 1px solid rgba(0,255,255,0.2);
+    }
+    h1 {
+      font-size: clamp(3rem, 10vw, 5.5rem);
+      background: linear-gradient(90deg, #00ffff, #ff2a5e, #00ffff);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      font-weight: 900;
+      text-shadow: var(--glow);
+      margin: 0.5rem 0;
+      letter-spacing: -3px;
+    }
+    .trust {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.2rem;
+      justify-content: center;
+      margin: 1rem 0;
+    }
+    .badge {
+      background: rgba(0,255,204,0.18);
+      border: 1px solid var(--green);
+      border-radius: 60px;
+      padding: 0.6rem 1.4rem;
+      font-weight: bold;
+      font-size: 1rem;
+    }
+    .banner {
+      background: rgba(255,42,94,0.25);
+      color: white;
+      padding: 1.2rem;
+      text-align: center;
+      font-size: 1.8rem;
+      font-weight: bold;
+      margin-top: 80px;
+      animation: flash 2s infinite;
+    }
+    @keyframes flash { 0%,100% {opacity:0.9;} 50% {opacity:0.3;} }
+    .ticker {
+      background: rgba(0,0,0,0.6);
+      padding: 1rem;
+      font-size: 1.3rem;
+      overflow: hidden;
+      white-space: nowrap;
+      margin: 1rem 0;
+    }
+    .ticker span { display: inline-block; padding-right: 4rem; animation: ticker 40s linear infinite; }
+    @keyframes ticker { 0% {transform:translateX(100%)} 100% {transform:translateX(-100%)} }
+    .container { max-width: 1400px; margin: 0 auto; padding: 2rem 1rem; padding-top: 180px; }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+      gap: 2.5rem;
+      margin: 4rem 0;
+    }
+    .card {
+      background: var(--glass);
+      backdrop-filter: blur(24px);
+      border: 1px solid rgba(0,255,255,0.3);
+      border-radius: 32px;
+      padding: 3rem 2.2rem;
+      text-align: center;
+      transition: all 0.5s cubic-bezier(0.23,1,0.32,1);
+    }
+    .card:hover { transform: translateY(-25px) scale(1.05); box-shadow: var(--glow); border-color: var(--accent); }
+    .robux { font-size: 5rem; font-weight: 900; color: var(--accent); margin: 1.5rem 0; }
+    .cost { font-size: 3rem; color: var(--green); font-weight: bold; }
+    .strike { color: #666; text-decoration: line-through; font-size: 2rem; margin-left: 1.2rem; }
+    .sold { color: var(--accent); font-size: 1.6rem; margin: 2rem 0; font-weight: bold; }
+    .buy-btn {
+      background: linear-gradient(45deg, #00ffff, #0099cc);
+      color: black;
+      border: none;
+      padding: 1.6rem 4rem;
+      font-size: 1.7rem;
+      font-weight: 900;
+      border-radius: 70px;
+      cursor: pointer;
+      margin-top: 2.5rem;
+      width: 100%;
+      box-shadow: var(--glow);
+    }
+    .buy-btn:hover { transform: scale(1.12); box-shadow: 0 0 80px rgba(0,255,255,1); }
+    .reviews {
+      background: var(--glass);
+      backdrop-filter: blur(22px);
+      border-radius: 28px;
+      padding: 3rem;
+      margin: 5rem 0;
+      border: 1px solid rgba(0,255,204,0.3);
+    }
+    .review {
+      background: rgba(0,255,204,0.08);
+      border-radius: 16px;
+      padding: 1.8rem;
+      margin: 2rem 0;
+      font-style: italic;
+    }
+    #checkout {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.95);
+      backdrop-filter: blur(12px);
+      z-index: 10000;
+      align-items: center;
+      justify-content: center;
+    }
+    .checkout-box {
+      background: var(--glass);
+      backdrop-filter: blur(35px);
+      border-radius: 36px;
+      padding: 4rem 3.5rem;
+      max-width: 620px;
+      width: 95%;
+      border: 2px solid var(--accent);
+      box-shadow: var(--glow);
+    }
+    .close-btn { position:absolute; top:1.5rem; right:2rem; font-size:3rem; cursor:pointer; }
+    input, select {
+      width: 100%;
+      padding: 20px;
+      margin: 1.6rem 0;
+      border-radius: 16px;
+      border: 1px solid rgba(0,255,255,0.45);
+      background: rgba(0,0,10,0.7);
+      color: white;
+      font-size: 1.4rem;
+    }
+    #fake-progress {
+      height: 12px;
+      background: #0a0a1a;
+      border-radius: 6px;
+      margin: 3rem 0;
+      overflow: hidden;
+      display: none;
+    }
+    #bar {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, #00ffcc, #00ffff);
+      transition: width 5.5s ease;
+    }
+    #msg {
+      text-align: center;
+      font-size: 1.9rem;
+      margin: 3rem 0;
+      min-height: 5rem;
+      line-height: 1.5;
+    }
   </style>
 </head>
 <body>
+  <canvas id="bg-canvas"></canvas>
+  <canvas id="wave-canvas"></canvas>
+
   <header>
-    <h1>RobuxFlip Casino</h1>
-    <p>#1 Place to Turn Robux into BIG Wins – 2026</p>
+    <h1>RobuxNova</h1>
+    <div style="font-size:1.8rem;color:#00ffcc;margin:0.8rem 0;">2026 Most Trusted • 450k+ Delivered</div>
+    <div class="trust">
+      <div class="badge">🔒 256-bit SSL</div>
+      <div class="badge">⭐ 4.98 / 5 (214k)</div>
+      <div class="badge">⚡ Instant 24/7</div>
+      <div class="badge">🛡️ No Bans Ever</div>
+    </div>
   </header>
 
+  <div class="banner">70% MEGA FLASH SALE – LIMITED TIME ONLY!</div>
+
+  <div class="ticker">
+    <span>Just now: xXDarkSlayerXx bought 80,000 Robux • 2 min ago • congrats! • RobloxQueen bought 45k • instant delivery • EpicWinz bought 150k • 🔥 • ... </span>
+  </div>
+
   <div class="container">
-    <div class="balance-box">
-      Your Credits: <span id="credits">0</span> RC
+    <div class="grid">
+      <div class="card">
+        <h2>Power Pack</h2>
+        <div class="robux">20,000 Robux</div>
+        <div><span class="cost">$24.99</span> <span class="strike">$89.99</span></div>
+        <div class="sold">Claimed today: <span id="c1">612</span></div>
+        <button class="buy-btn" onclick="showCheckout(20000,24.99)">Claim Now – Instant</button>
+      </div>
+      <div class="card">
+        <h2>Elite Pack</h2>
+        <div class="robux">100,000 Robux</div>
+        <div><span class="cost">$89.99</span> <span class="strike">$299.99</span></div>
+        <div class="sold">Claimed today: <span id="c2">1,847</span></div>
+        <button class="buy-btn" onclick="showCheckout(100000,89.99)">Claim Now – Instant</button>
+      </div>
+      <div class="card">
+        <h2>God Pack</h2>
+        <div class="robux">500,000 Robux</div>
+        <div><span class="cost">$349.99</span> <span class="strike">$999.99</span></div>
+        <div class="sold">Claimed today: <span id="c3">934</span></div>
+        <button class="buy-btn" onclick="showCheckout(500000,349.99)">Claim Now – Instant</button>
+      </div>
     </div>
 
-    <div style="text-align:center;">
-      <button class="btn btn-buy" onclick="showDeposit()">Buy Credits (Robux / Crypto)</button>
-      <button class="btn btn-play">Play Now</button>
+    <div class="reviews">
+      <h2 style="text-align:center;color:#00ffcc;font-size:2.8rem;margin-bottom:2.5rem;">Loved by Players Worldwide</h2>
+      <div class="review">"500k delivered in seconds – unreal site!" – VoidKing</div>
+      <div class="review">"Bought 4 times this month, never a problem" – CzechRobuxLord</div>
+      <div class="review">"Cheapest + fastest – everyone should use this" – NeonVibe</div>
     </div>
+  </div>
 
-    <div id="deposit-form" class="hidden">
-      <h2>Deposit & Get Credits Instantly</h2>
-      <p>Send Robux to group or crypto to the address below – credits appear automatically!</p>
-      
-      <label>Robux Group Link (send here)</label>
-      <input type="text" value="https://www.roblox.com/groups/12345678/RobuxFlip#!/about" readonly onclick="this.select()"/>
-      
-      <label>Your Crypto Wallet (BTC / ETH / SOL / USDT recommended)</label>
-      <input type="text" id="wallet" placeholder="Paste your wallet address here" required/>
-      
-      <label>Transaction Hash / Proof (optional but speeds up)</label>
-      <input type="text" id="txid" placeholder="0x... or Robux receipt ID"/>
-      
-      <button class="btn btn-buy" style="width:100%; margin-top:1rem;" onclick="fakeProcess()">Confirm Deposit</button>
-      <div id="status"></div>
-    </div>
+  <div id="checkout">
+    <div class="checkout-box">
+      <span class="close-btn" onclick="hideCheckout()">×</span>
+      <h2 style="text-align:center;color:var(--accent);margin-bottom:2.5rem;font-size:3rem;">Secure Instant Delivery</h2>
+      <p id="deal-info" style="text-align:center;font-size:2.2rem;margin-bottom:2.5rem;"></p>
 
-    <h2 style="text-align:center; color:var(--accent);">Featured Games</h2>
-    <div class="game-grid">
-      <div class="game-card">
-        <h3>Crash</h3>
-        <div id="crash-multi">1.00×</div>
-        <button class="btn" onclick="startFakeCrash()">Bet & Start</button>
-      </div>
-      <div class="game-card">
-        <h3>Mines</h3>
-        <p>Pick tiles – avoid bombs – multiply credits</p>
-        <button class="btn">Play Mines</button>
-      </div>
-      <div class="game-card">
-        <h3>Roulette</h3>
-        <p>Red / Black / Green – up to 14×</p>
-        <button class="btn">Spin Now</button>
-      </div>
+      <label>Roblox Username</label>
+      <input type="text" id="uname" placeholder="Your exact username" required/>
+
+      <label>Choose Payment</label>
+      <select id="payopt">
+        <option>Robux Group Transfer (Recommended)</option>
+        <option>Bitcoin / Lightning</option>
+        <option>USDT / ETH / SOL</option>
+      </select>
+
+      <label>Proof (txid / screenshot / receipt)</label>
+      <input type="text" id="proof" placeholder="Paste here (speeds up delivery)"/>
+
+      <div id="fake-progress"><div id="bar"></div></div>
+      <button class="buy-btn" onclick="simulateDelivery()">Complete Secure Payment</button>
+      <div id="msg"></div>
     </div>
   </div>
 
   <script>
-    let credits = 0;
-    const creditsEl = document.getElementById('credits');
-    const statusEl = document.getElementById('status');
-    const depositForm = document.getElementById('deposit-form');
-    const multiEl = document.getElementById('crash-multi');
+    // Background particles + wave
+    const bg = document.getElementById('bg-canvas');
+    const wv = document.getElementById('wave-canvas');
+    const bctx = bg.getContext('2d');
+    const wctx = wv.getContext('2d');
+    bg.width = wv.width = window.innerWidth;
+    bg.height = wv.height = window.innerHeight;
+    window.addEventListener('resize', ()=>{ bg.width=wv.width=window.innerWidth; bg.height=wv.height=window.innerHeight; });
 
-    function updateCredits() {
-      creditsEl.textContent = credits.toFixed(2);
+    let ps = [];
+    for(let i=0;i<120;i++) ps.push({x:Math.random()*bg.width,y:Math.random()*bg.height,r:Math.random()*3+1,vx:Math.random()*0.6-0.3,vy:Math.random()*0.6-0.3});
+    function drawBg(){ bctx.clearRect(0,0,bg.width,bg.height);
+      ps.forEach(p=>{p.x+=p.vx;p.y+=p.vy;
+        if(p.x<0||p.x>bg.width)p.vx*=-1;
+        if(p.y<0||p.y>bg.height)p.vy*=-1;
+        bctx.beginPath();bctx.arc(p.x,p.y,p.r,0,Math.PI*2);
+        bctx.fillStyle='rgba(0,255,255,0.35)';bctx.fill();});
+      requestAnimationFrame(drawBg);}
+    drawBg();
+
+    // Fake live counters
+    setInterval(()=>{
+      document.getElementById('c1').textContent = Math.floor(Math.random()*300)+500;
+      document.getElementById('c2').textContent = Math.floor(Math.random()*800)+1500;
+      document.getElementById('c3').textContent = Math.floor(Math.random()*400)+800;
+    },5000);
+
+    function showCheckout(r,p){
+      document.getElementById('deal-info').textContent = `${r.toLocaleString()} Robux – Only $${p}`;
+      document.getElementById('checkout').style.display='flex';
     }
 
-    function showDeposit() {
-      depositForm.classList.remove('hidden');
-      depositForm.scrollIntoView({behavior:'smooth'});
+    function hideCheckout(){
+      document.getElementById('checkout').style.display='none';
+      document.getElementById('msg').innerHTML='';
+      document.getElementById('bar').style.width='0%';
+      document.getElementById('fake-progress').style.display='none';
     }
 
-    function fakeProcess() {
-      const wallet = document.getElementById('wallet').value.trim();
-      if (!wallet) {
-        statusEl.textContent = 'Enter your wallet address first!';
-        statusEl.style.color = 'var(--danger)';
-        return;
+    function simulateDelivery(){
+      const u = document.getElementById('uname').value.trim();
+      const m = document.getElementById('msg');
+      const bar = document.getElementById('bar');
+      const pr = document.getElementById('fake-progress');
+
+      if(!u){ m.textContent='Username required!'; m.style.color='var(--red)'; return; }
+
+      m.textContent='Connecting to secure Roblox delivery system...';
+      m.style.color='var(--accent)';
+      pr.style.display='block';
+      bar.style.width='0%';
+
+      setTimeout(()=>{bar.style.width='30%'; m.textContent='Verifying transaction...';},1800);
+      setTimeout(()=>{bar.style.width='60%'; m.textContent='Preparing instant group payout...';},4200);
+      setTimeout(()=>{bar.style.width='100%'; m.innerHTML='<span style="color:#00ffcc;font-size:2.8rem;font-weight:bold;">DELIVERED!</span><br><br>Your Robux is now in your account!<br>Refresh Roblox and enjoy.<br>Thank you for choosing RobuxNova!'; confetti(); },7800);
+    }
+
+    function confetti(){
+      for(let i=0;i<300;i++){
+        let c=document.createElement('div');
+        c.style.cssText=`position:fixed;width:14px;height:14px;background:\( {['#00ffff','#00ffcc','#ff2a5e','#ffff66'][Math.floor(Math.random()*4)]};left: \){Math.random()*100}vw;top:-30px;border-radius:50%;pointer-events:none;opacity:${Math.random()*0.7+0.3};`;
+        document.body.appendChild(c);
+        let y=-30, v=Math.random()*14+10, rot=0;
+        let id=setInterval(()=>{
+          y+=v; v+=0.45; rot+=12;
+          c.style.top=y+'px';
+          c.style.transform=`rotate(${rot}deg)`;
+          if(y>window.innerHeight+50){c.remove();clearInterval(id);}
+        },16);
       }
-      statusEl.textContent = 'Processing deposit... (this may take 1–5 minutes)';
-      statusEl.style.color = 'var(--accent)';
-
-      setTimeout(() => {
-        credits += Math.floor(Math.random() * 5000) + 1000;
-        updateCredits();
-        statusEl.textContent = 'Deposit confirmed! Credits added. Enjoy gambling!';
-        statusEl.style.color = 'var(--success)';
-        // In real scam: here would be POST to attacker's server with wallet + txid + IP
-      }, 3500);
     }
 
-    let crashInterval;
-    function startFakeCrash() {
-      if (credits < 100) {
-        statusEl.textContent = 'Need at least 100 credits to play Crash!';
-        return;
-      }
-      credits -= 100;
-      updateCredits();
-      let mult = 1.00;
-      multiEl.textContent = '1.00×';
-      statusEl.textContent = 'Game running...';
-
-      crashInterval = setInterval(() => {
-        mult += 0.03 + (mult * 0.015);
-        multiEl.textContent = mult.toFixed(2) + '×';
-        if (Math.random() < 0.02 && mult > 1.5) { // fake crash
-          clearInterval(crashInterval);
-          statusEl.textContent = `Crashed at ${mult.toFixed(2)}× – Lost 100 credits!`;
-          statusEl.style.color = 'var(--danger)';
-          multiEl.textContent = 'CRASHED';
-        }
-      }, 120);
-    }
-
-    updateCredits();
+    document.getElementById('checkout').onclick=e=>{if(e.target===document.getElementById('checkout'))hideCheckout()};
   </script>
 </body>
 </html>
